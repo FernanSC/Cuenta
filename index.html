@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="./css/estilo.css">
+</head>
+<body>
+<h1>Inicia sesión Youtube</h1>
+    <div class="contenedor">
+        <h2>REGISTRARSE</h2>
+        <p>Escriba su correo electronico</p>
+        <input type="email" name="" id="email"> <br>
+        <p>Escriba su contraseña</p>
+        <input type="pass" name="" id="pass"> <br>
+        <br>
+        <button id="ingresar">ACEPTAR</button>
+    
+    </div>
+    <br>
+
+    <div class="contenedor1">
+        <h2>INICIAR</h2>
+        <p>Escriba su correo electronico</p>
+        <input type="email1" name="" id="email1"> <br>
+        <p>Escriba su contraseña</p>
+        <input type="pass1" name="" id="pass1"> <br>
+        <br>
+        <button id="ingresar1"> <a href="https://www.youtube.com/"> ACEPTAR</a></button>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAF_ZtPwnuSMCiAxIIXpMUg-D2VdwY4GuE",
+          authDomain: "fir-dfcd9.firebaseapp.com",
+          projectId: "fir-dfcd9",
+          storageBucket: "fir-dfcd9.appspot.com",
+          messagingSenderId: "160292795328",
+          appId: "1:160292795328:web:471c5986dcd6fc3dea4e25"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        document.getElementById("ingresar").addEventListener("click", function(){
+        const email = document.getElementById("email"). value;  
+        const pass = document.getElementById("pass"). value;
+
+        createUserWithEmailAndPassword(auth, email, pass)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+    console.log("La cuenta  se creo exitosamente")
+
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+    console.log("La cuenta no se creo exitosamente")
+
+  });
+  document.getElementById("ingresar1").addEventListener("click", function(){
+        const email1 = document.getElementById("email1"). value;  
+        const pass1 = document.getElementById("pass1"). value;
+
+        signInWithEmailAndPassword(auth, email1, pass1)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+    console.log("La cuenta  se creo ")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log("La cuenta no se creo ")
+  });
+    })
+})
+      </script>
+
+</body>
+</html>
